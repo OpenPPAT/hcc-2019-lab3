@@ -1,0 +1,22 @@
+devel/
+build/
+
+# ROS related
+.catkin_workspace
+*.bag
+
+# Jupyter checkpoint file
+.ipynb_checkpoints/
+__pycache__/
+
+# Pytorch dataset
+10-Deep_Learning_2/data/
+12-1_Pytorch-FCN/data/
+12-1_Pytorch-FCN/models/
+12-1_Pytorch-FCN/scores/
+
+# Pytorch model
+*.pth
+*.tar*
+
+*.pyc
