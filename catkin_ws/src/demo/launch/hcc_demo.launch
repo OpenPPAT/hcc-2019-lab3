@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <node pkg="demo" type="rename_odom_msg.py" name="rename_odom_node" output="screen" ns="mmbot16"/>
+
+    <node pkg="control" type="subt_pid.py" name="subt_pid" output="screen" ns="mmbot16" />
+
+    <node pkg="control" type="pure_pursuit_point.py" name="pure_pursuit_point" output="screen" ns="mmbot16" />
+</launch>
