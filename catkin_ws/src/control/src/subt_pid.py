@@ -31,9 +31,10 @@ class Robot_PID():
 		self.turn_threshold = 40
 		self.cmd_ctrl_max = 0.7
 		self.cmd_ctrl_min = -0.7
-		self.arrived_dis = 0.1 # meters
+		self.arrived_dis = 0.08 # meters
 		self.frame_id = 'map'
 		self.emergency_stop = False
+		self.arrived_flag = False
 		self.final_goal = None # The final goal that you want to arrive
 		self.goal = self.final_goal
 
@@ -69,8 +70,9 @@ class Robot_PID():
 		#yaw = yaw + np.pi/2
 		goal_distance = self.get_distance(robot_position, self.goal)
 		goal_angle = self.get_goal_angle(yaw, robot_position, self.goal)
-		if goal_distance < self.arrived_dis or self.emergency_stop:
-			self.emergency_stop = True
+		if goal_distance < self.arrived_dis or self.emergency_stop or self.arrived_flag:
+			# self.emergency_stop = True
+			self.arrived_flag = True
 			rospy.loginfo("Stop!!!")
 			pos_output, ang_output = (0, 0)
 		else:
@@ -99,6 +101,7 @@ class Robot_PID():
 	def goal_cb(self, p):
 		self.final_goal = [p.pose.position.x, p.pose.position.y]
 		self.goal = self.final_goal
+		self.arrived_flag = False
 
 	def emergency_stop_cb(self, req):
 		if req.data == True:
