@@ -6,10 +6,24 @@ NC='\033[0m'
 
 # Make sure processes in the container can connect to the x server
 # Necessary so gazebo can create a context for OpenGL rendering (even headless)
-XAUTH=/tmp/.docker.xauth
 XSOCK=/tmp/.X11-unix
-sudo touch $XAUTH
-xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+XAUTH=/tmp/.docker.xauth
+if [ ! -f $XAUTH ]
+then
+    xauth_list=$(xauth nlist :0 | sed -e 's/^..../ffff/')
+    if [ ! -z "$xauth_list" ]
+    then
+        echo $xauth_list | xauth -f $XAUTH nmerge -
+    else
+        touch $XAUTH
+    fi
+    chmod a+r $XAUTH
+fi
+
+
+
+# sudo touch $XAUTH
+# xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 # Find current directory and transfer it to container directory for Docker
 current_dir="$(pwd)"

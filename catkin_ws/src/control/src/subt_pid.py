@@ -41,9 +41,9 @@ class Robot_PID():
 		rospy.loginfo("[%s] Initializing " %(self.node_name))
 
 		self.sub_goal = rospy.Subscriber("/pursue_point", PoseStamped, self.goal_cb, queue_size=1)
-		rospy.Subscriber('/mmbot16/wt_odom', Odometry, self.odom_cb, queue_size = 1, buff_size = 2**24)
+		rospy.Subscriber('wt_odom', Odometry, self.odom_cb, queue_size = 1, buff_size = 2**24)
 		# self.pub_cmd = rospy.Publisher("/X1/cmd_vel", Twist, queue_size = 1)
-		self.pub_cmd = rospy.Publisher("/mmbot16/nav_vel", Twist, queue_size = 1)
+		self.pub_cmd = rospy.Publisher("nav_vel", Twist, queue_size = 1)
 		self.pub_goal = rospy.Publisher("/goal_point", Marker, queue_size = 1)
 		self.emergency_stop_srv = rospy.Service("/emergency_stop", SetBool, self.emergency_stop_cb)
 
