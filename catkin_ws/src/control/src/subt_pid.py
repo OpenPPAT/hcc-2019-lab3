@@ -28,7 +28,7 @@ class Robot_PID():
 		self.pos_ctrl_min = 0
 		self.ang_ctrl_max = 1.0
 		self.ang_ctrl_min = -1.0
-		self.turn_threshold = 40
+		self.turn_threshold = 60
 		self.cmd_ctrl_max = 0.7
 		self.cmd_ctrl_min = -0.7
 		self.arrived_dis = 0.08 # meters
