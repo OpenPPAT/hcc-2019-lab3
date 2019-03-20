@@ -4,7 +4,9 @@
     <arg name="bot" default="mmbot14" />
 
     <group ns="$(arg bot)">
-        <node pkg="demo" type="rename_odom_msg2.py" name="rename_odom_node" output="screen" />
+        <node pkg="demo" type="rename_odom_msg2.py" name="rename_odom_node" output="screen" >
+            <param name="bot" type="str" value="$(arg bot)" />
+        </node>
 
         <node pkg="control" type="subt_pid.py" name="subt_pid" output="screen" />
 

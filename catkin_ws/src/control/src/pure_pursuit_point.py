@@ -66,7 +66,7 @@ def main():
 	#path = []
 	#robot = None
 	rospy.init_node('pub_point', anonymous=True)
-	rospy.Subscriber("/planning_path", Path, path_cb, queue_size=1)
+	rospy.Subscriber("planning_path", Path, path_cb, queue_size=1)
 	rospy.Subscriber('wt_odom', Odometry, odom_cb, queue_size = 1, buff_size = 2**24)
 	#pub_point = rospy.Publisher('/pursue_point', PoseStamped, queue_size=10)
 	rospy.spin()

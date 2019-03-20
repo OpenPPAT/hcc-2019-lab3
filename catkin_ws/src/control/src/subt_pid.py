@@ -26,12 +26,12 @@ class Robot_PID():
 		self.dis4constV = 3. # Distance for constant velocity
 		self.pos_ctrl_max = 0.7
 		self.pos_ctrl_min = 0
-		self.ang_ctrl_max = 1.0
-		self.ang_ctrl_min = -1.0
-		self.turn_threshold = 60
+		self.ang_ctrl_max = 0.8
+		self.ang_ctrl_min = -0.8
+		self.turn_threshold = 70
 		self.cmd_ctrl_max = 0.7
 		self.cmd_ctrl_min = -0.7
-		self.arrived_dis = 0.08 # meters
+		self.arrived_dis = 0.1 # meters
 		self.frame_id = 'map'
 		self.emergency_stop = False
 		self.arrived_flag = False
